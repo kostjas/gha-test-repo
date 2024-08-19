@@ -1,0 +1,36 @@
+name: Test Release Workflow
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  TestRelease:
+
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          # required
+          app-id: ${{ secrets.KS_AUTH_APP_ID }}
+          private-key: ${{ secrets.KS_AUTH_APP_SECRET }}
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          ref: ${{ github.head_ref }}
+          # Make sure the value of GITHUB_TOKEN will not be persisted in repo's config
+          persist-credentials: false
+
+      - name: Modify README.md
+        run: |
+          # Example command to modify README.md
+          echo "This is an automated update" >> README.md
+
+      - name: Set up Git
+        run: |
+          git config --global user.email "konstantin.spitsyn@gmail.com"
+          git config --global user.name "github-actions[bot]"
+          git add README.md
+          git commit -m "Auto-update README.md"

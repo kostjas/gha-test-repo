@@ -10,12 +10,12 @@ jobs:
   TestRelease:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/create-github-app-token@v1
+      - name: Generate token
         id: app-token
+        uses: tibdex/github-app-token@v1
         with:
-          # required
-          app-id: ${{ secrets.KS_AUTH_APP_ID }}
-          private-key: ${{ secrets.KS_AUTH_APP_SECRET }}
+          app_id: ${{ secrets.ks_auth_app_id }}
+          private_key: ${{ secrets.ks_auth_app_secret }}
       - uses: actions/checkout@v4
         with:
           token: ${{ steps.app-token.outputs.token }}

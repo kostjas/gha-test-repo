@@ -31,7 +31,7 @@ jobs:
       - name: Set up Git
         run: |
           git config --global user.email "konstantin.spitsyn@gmail.com"
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "kostjas"
           git add README.md
           git commit -m "Auto-update README.md"
           git push origin main

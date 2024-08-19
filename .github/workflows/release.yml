@@ -29,9 +29,11 @@ jobs:
           echo "This is an automated update" >> README.md
 
       - name: Set up Git
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           git config --global user.email "konstantin.spitsyn@gmail.com"
-          git config --global user.name "kostjas"
+          git config --global user.name "gha[bot]"
           git add README.md
           git commit -m "Auto-update README.md"
-          git push origin main
+          git push

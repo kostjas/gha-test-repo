@@ -34,3 +34,4 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git add README.md
           git commit -m "Auto-update README.md"
+          git push origin main

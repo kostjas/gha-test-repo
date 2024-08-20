@@ -43,3 +43,4 @@ jobs:
         run: |
           # Example command to modify README.md
           echo ${{ github.event.repository.name }}
+          echo ${{ github.event.repository_owner }}

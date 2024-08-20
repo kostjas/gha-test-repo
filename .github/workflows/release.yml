@@ -38,3 +38,8 @@ jobs:
           git add README.md
           git commit -m "Auto-update README.md"
           git push
+
+      - name: Debug
+        run: |
+          # Example command to modify README.md
+          echo ${{ github.event.repository.name }}
